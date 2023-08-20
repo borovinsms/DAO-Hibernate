@@ -1,13 +1,11 @@
 package ru.netology.task8ormhibernate.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ru.netology.task8ormhibernate.repository.dbintities.Metrics;
-import ru.netology.task8ormhibernate.repository.dbintities.Persons;
+import ru.netology.task8ormhibernate.repository.dbentities.Metrics;
+import ru.netology.task8ormhibernate.repository.dbentities.Persons;
 
 import java.util.List;
 import java.util.Random;
@@ -17,8 +15,7 @@ import java.util.stream.IntStream;
 @Component
 public class FillDataBaseClass implements CommandLineRunner {
 
-    @PersistenceContext
-    private final EntityManager entityManager;
+    private final PersonsCRUDRepository repository;
 
     @Override
     @Transactional
@@ -39,7 +36,7 @@ public class FillDataBaseClass implements CommandLineRunner {
                     .phoneNumber("xxxxxxxxxxx")
                     .cityOfLiving(cities.get(random.nextInt(cities.size())))
                     .build();
-            entityManager.merge(person);
+            repository.save(person);
         });
     }
 }
