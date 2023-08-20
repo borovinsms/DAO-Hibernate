@@ -1,1 +1,1 @@
-GET http://localhost:D8080/products/fetch-product?name=Vitaliy
+GET http://localhost:8080/persons/by-city?city=Voronez
