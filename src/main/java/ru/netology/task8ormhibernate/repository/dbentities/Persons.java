@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Table(indexes = @Index(name = "city_index", columnList = "cityOfLiving"))
 public class Persons {
 
-    @Id
+    @EmbeddedId
     private Metrics id;
 
     @Column(nullable = false, length = 11)
