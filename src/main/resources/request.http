@@ -1,1 +1,125 @@
-GET http://localhost:8080/persons/by-city?city=Voronez
+GET http://localhost:8080/persons/Bryansk
+
+###
+
+GET http://localhost:8080/persons/less/35
+
+###
+
+GET http://localhost:8080/persons/save?name=Mila&surname=Poddubnaya&age=14&phone=89254562525&city=Bryansk
+
+###
+
+GET http://localhost:8080/persons/anthroponym?name=Mila&surname=Poddubnaya
+
+###
+
+POST http://localhost:8080/persons/save
+Content-Type: application/json
+
+[
+  {
+    "name": "Natasha",
+    "surname": "Poddubnaya",
+    "age": 38,
+    "phone": "xxxxxxxxxxx",
+    "city": "SPB"
+  },
+  {
+    "name": "Elena",
+    "surname": "Grishina",
+    "age": 32,
+    "phone": "xxxxxxxxxxx",
+    "city": "Maiamy"
+  }
+]
+
+###
+
+GET http://localhost:8080/persons/id?name=Mila&surname=Poddubnaya&age=14
+
+###
+
+GET http://localhost:8080/persons/exist?name=Mila&surname=Poddubnaya&age=13
+
+###
+
+GET http://localhost:8080/persons/all
+
+###
+
+POST http://localhost:8080/persons/all
+Content-Type: application/json
+
+[
+  {
+    "name": "Natasha",
+    "surname": "Poddubnaya",
+    "age": 38
+  },
+  {
+    "name": "Elena",
+    "surname": "Grishina",
+    "age": 32
+  }
+]
+
+###
+
+GET http://localhost:8080/persons/count
+
+###
+
+DELETE http://localhost:8080/persons/id?name=Elena&surname=Grishina&age=32
+
+###
+
+DELETE http://localhost:8080/persons/?name=Elena&surname=Grishina&age=33&phone=xxxxxxxxxxx&city=Maiamy
+
+###
+
+DELETE http://localhost:8080/persons/all-id
+Content-Type: application/json
+
+[
+  {
+    "name": "Natasha",
+    "surname": "Poddubnaya",
+    "age": 40
+  },
+  {
+    "name": "Elena",
+    "surname": "Grishina",
+    "age": 33
+  }
+]
+
+###
+
+DELETE http://localhost:8080/persons/list
+Content-Type: application/json
+
+[
+  {
+    "name": "Natasha",
+    "surname": "Poddubnaya",
+    "age": 38,
+    "phone": "xxxxxxxxxxx",
+    "city": "SPB"
+  },
+  {
+    "name": "Elena",
+    "surname": "Grishina",
+    "age": 32,
+    "phone": "xxxxxxxxxxx",
+    "city": "Maiamy"
+  }
+]
+
+###
+
+DELETE http://localhost:8080/persons/all
+
+###
+
+GET http://localhost:8080/login?name=user&password=upass
