@@ -43,4 +43,12 @@ public class Persons {
         this.phone = phone;
         this.city = city;
     }
+
+    public Persons(String name, String surname, int age) {
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.phone = null;
+        this.city = null;
+    }
 }

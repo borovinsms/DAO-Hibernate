@@ -1,17 +1,15 @@
 package ru.netology.task8ormhibernate.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import ru.netology.task8ormhibernate.repository.IRepository;
 import ru.netology.task8ormhibernate.model.Persons;
+import ru.netology.task8ormhibernate.model.Metrics;
 import ru.netology.task8ormhibernate.exception.NotFoundException;
 import ru.netology.task8ormhibernate.repository.PersonsCRUDRepository;
-import ru.netology.task8ormhibernate.repository.dbentities.Metrics;
-import ru.netology.task8ormhibernate.repository.dbentities.Persons;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -48,13 +46,12 @@ public class PersonsService {
     }
 
     private List<Persons> convertEntitiesToPersonList(List<Persons> persons, String exceptionMessage) {
-        final var personList = persons.stream().map(this::convertEntityToPerson).toList();
         if (persons.isEmpty()) throw new NotFoundException(exceptionMessage);
-        return personList;
+        return persons;
     }
 
     private List<Metrics> convertPersonsToIdList(List<Persons> persons) {
-        return persons.stream().map(this::convertPersonToId).toList();
+        return persons.stream().map(this::convertPersonToId).collect(Collectors.toList());
     }
 
     private List<Persons> convertPersonsToEntity(List<Persons> persons) {
@@ -64,7 +61,7 @@ public class PersonsService {
                         .phoneNumber(i.getPhone())
                         .cityOfLiving(i.getCity())
                         .build()
-        ).toList();
+        ).collect(Collectors.toList());
     }
 
     public List<Persons> getPersonsByCity(String city) {
@@ -93,7 +90,7 @@ public class PersonsService {
     public List<Persons> saveAll(List<Persons> persons) {
         return repository.saveAll(convertPersonsToEntity(persons)).stream()
                 .map(this::convertEntityToPerson)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public Persons getById(Persons person) {
@@ -109,7 +106,7 @@ public class PersonsService {
     public List<Persons> getAll() {
         return repository.findAll(sort).stream()
                 .map(this::convertEntityToPerson)
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public List<Persons> getAllById(List<Persons> persons) {
@@ -130,11 +127,11 @@ public class PersonsService {
     }
 
     public void deleteAllById(List<Persons> persons) {
-        repository.deleteAllById(persons.stream().map(this::convertPersonToId).toList());
+        repository.deleteAllById(persons.stream().map(this::convertPersonToId).collect(Collectors.toList()));
     }
 
     public void deleteAllPersons(List<Persons> persons) {
-        repository.deleteAll(persons.stream().map(this::convertPersonToEntity).toList());
+        repository.deleteAll(persons.stream().map(this::convertPersonToEntity).collect(Collectors.toList()));
     }
 
     public void deleteAll() {

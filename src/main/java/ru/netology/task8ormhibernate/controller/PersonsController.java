@@ -1,8 +1,6 @@
 package ru.netology.task8ormhibernate.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.netology.task8ormhibernate.model.Persons;
 import ru.netology.task8ormhibernate.service.PersonsService;
 
