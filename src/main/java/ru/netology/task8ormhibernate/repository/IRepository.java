@@ -1,10 +1,10 @@
 package ru.netology.task8ormhibernate.repository;
 
-import ru.netology.task8ormhibernate.model.Person;
+import ru.netology.task8ormhibernate.model.Persons;
 
 import java.util.List;
 
 public interface IRepository {
 
-    List<Person> getPersonsByCity(String city);
+    List<Persons> getPersonsByCity(String city);
 }

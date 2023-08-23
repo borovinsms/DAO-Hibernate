@@ -3,7 +3,7 @@ package ru.netology.task8ormhibernate.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.netology.task8ormhibernate.model.Person;
+import ru.netology.task8ormhibernate.model.Persons;
 import ru.netology.task8ormhibernate.service.PersonsService;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class PersonsController {
     }
 
     @GetMapping("/persons/by-city")
-    public List<Person> getPersonsByCity(@RequestParam String city) {
+    public List<Persons> getPersonsByCity(@RequestParam String city) {
         return service.getPersonsByCity(city);
     }
 }

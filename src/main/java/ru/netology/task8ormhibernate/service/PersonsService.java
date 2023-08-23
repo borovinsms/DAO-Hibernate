@@ -1,8 +1,8 @@
 package ru.netology.task8ormhibernate.service;
 
 import org.springframework.stereotype.Service;
-import ru.netology.task8ormhibernate.model.Person;
 import ru.netology.task8ormhibernate.repository.IRepository;
+import ru.netology.task8ormhibernate.model.Persons;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class PersonsService {
         this.repository = repository;
     }
 
-    public List<Person> getPersonsByCity(String city) {
+    public List<Persons> getPersonsByCity(String city) {
         return repository.getPersonsByCity(city);
     }
 }
