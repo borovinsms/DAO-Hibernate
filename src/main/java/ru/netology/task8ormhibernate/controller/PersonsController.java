@@ -1,7 +1,9 @@
 package ru.netology.task8ormhibernate.controller;
 
-import org.springframework.web.bind.annotation.*;
-import ru.netology.task8ormhibernate.model.Person;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import ru.netology.task8ormhibernate.model.Persons;
 import ru.netology.task8ormhibernate.service.PersonsService;
 
 import java.util.List;
@@ -15,44 +17,44 @@ public class PersonsController {
     public PersonsController(PersonsService service) {
         this.service = service;
     }
-
+    
     @GetMapping("/{city}")
-    public List<Person> getPersonsByCity(@PathVariable String city) {
+    public List<Persons> getPersonsByCity(@PathVariable String city) {
         return service.getPersonsByCity(city);
     }
 
     @GetMapping("/less/{age}")
-    public List<Person> getPersonsYoungerThan(@PathVariable int age) {
+    public List<Persons> getPersonsYoungerThan(@PathVariable int age) {
         return service.getPersonsYoungerThan(age);
     }
 
     @GetMapping("/anthroponym")
-    public Person getPersonByNameAndSurname(@RequestParam String name, @RequestParam String surname) {
+    public Persons getPersonByNameAndSurname(@RequestParam String name, @RequestParam String surname) {
         return service.getPersonByNameAndSurname(name, surname);
     }
 
     @GetMapping("/save")
-    public Person save(
+    public Persons save(
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam int age,
             @RequestParam String phone,
             @RequestParam String city) {
-        return service.save(new Person(name, surname, age, phone, city));
+        return service.save(new Persons(name, surname, age, phone, city));
     }
 
     @PostMapping("/save")
-    public List<Person> saveAll(@RequestBody List<Person> persons) {
+    public List<Persons> saveAll(@RequestBody List<Persons> persons) {
         return service.saveAll(persons);
     }
 
     @GetMapping("/id")
-    public Person getById(
+    public Persons getById(
             @RequestParam String name,
             @RequestParam String surname,
             @RequestParam int age
     ) {
-        return service.getById(new Person(name, surname, age));
+        return service.getById(new Persons(name, surname, age));
     }
 
     @GetMapping("/exist")
@@ -61,16 +63,16 @@ public class PersonsController {
             @RequestParam String surname,
             @RequestParam int age
     ) {
-        return service.existsById(new Person(name, surname, age));
+        return service.existsById(new Persons(name, surname, age));
     }
 
     @GetMapping("/all")
-    public List<Person> getAll() {
+    public List<Persons> getAll() {
         return service.getAll();
     }
 
     @PostMapping("/all")
-    public List<Person> getAllById(@RequestBody List<Person> persons) {
+    public List<Persons> getAllById(@RequestBody List<Persons> persons) {
         return service.getAllById(persons);
     }
 
@@ -85,7 +87,7 @@ public class PersonsController {
             @RequestParam String surname,
             @RequestParam int age
     ) {
-        service.deleteById(new Person(name, surname, age));
+        service.deleteById(new Persons(name, surname, age));
     }
 
     @DeleteMapping("/")
@@ -96,16 +98,16 @@ public class PersonsController {
             @RequestParam String phone,
             @RequestParam String city
     ) {
-        service.delete(new Person(name, surname, age, phone, city));
+        service.delete(new Persons(name, surname, age, phone, city));
     }
 
     @DeleteMapping("/all-id")
-    public void deleteAllById(@RequestBody List<Person> persons) {
+    public void deleteAllById(@RequestBody List<Persons> persons) {
         service.deleteAllById(persons);
     }
 
     @DeleteMapping("/list")
-    public void deleteAllPersons(@RequestBody List<Person> persons) {
+    public void deleteAllPersons(@RequestBody List<Persons> persons) {
         service.deleteAllPersons(persons);
     }
 

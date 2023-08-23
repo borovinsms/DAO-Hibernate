@@ -4,7 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
-import ru.netology.task8ormhibernate.model.Person;
+import ru.netology.task8ormhibernate.model.Persons;
 
 import java.util.List;
 
@@ -15,15 +15,15 @@ public class DBRepository implements IRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<Person> getPersonsByCity(String city) {
+    public List<Persons> getPersonsByCity(String city) {
         final var query
                 = entityManager.createQuery(
-                "select new ru.netology.task8ormhibernate.model.Person(" +
+                "select new ru.netology.task8ormhibernate.model.Persons(" +
                         "p.id.name, p.id.surname, p.id.age, p.phoneNumber, p.cityOfLiving) " +
                         "from Persons p " +
                         "where p.cityOfLiving = :city " +
                         "order by p.id.name, p.id.surname, p.id.age",
-                Person.class
+                Persons.class
         );
         query.setParameter("city", city);
         final var persons = query.getResultList();

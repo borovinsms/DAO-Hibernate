@@ -4,8 +4,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import ru.netology.task8ormhibernate.repository.dbentities.Metrics;
-import ru.netology.task8ormhibernate.repository.dbentities.Persons;
+import ru.netology.task8ormhibernate.model.Metrics;
+import ru.netology.task8ormhibernate.model.Persons;
 
 import java.util.List;
 import java.util.Random;
@@ -31,7 +31,7 @@ public class FillDataBaseClass implements CommandLineRunner {
                     .id(Metrics.builder()
                             .name(names.get(random.nextInt(names.size())))
                             .surname(surnames.get(random.nextInt(surnames.size())))
-                            .age(random.nextInt(1, 60))
+                            .age(random.nextInt())
                             .build())
                     .phoneNumber("xxxxxxxxxxx")
                     .cityOfLiving(cities.get(random.nextInt(cities.size())))
